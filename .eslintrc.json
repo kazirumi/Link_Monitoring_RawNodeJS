@@ -20,6 +20,7 @@
         }
       }
     ],
+    "comma-dangle": ["error", "only-multiline"],
     "arrow-body-style": ["error", "always"],
     "no-console": 0,
     "indent": 0,
