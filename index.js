@@ -4,12 +4,19 @@ const http = require('http');
 const { handleReqRes } = require('./helpers/handleReqRes');
 const enviroment = require('./helpers/enviroments');
 // const lib = require('./lib/data');
+const { sendTwilioSms } = require('./helpers/notifications');
 
 const app = {};
 // lib.delete('test', 'newFile', (err) => {
 //     console.log(err);
 // });
+// todo test delete
 
+// sendTwilioSms('01303737379', 'hello rumi', (err) => {
+//     console.log(err);
+// });
+
+// config server
 app.createServer = () => {
     const server = http.createServer(app.handleReqRes);
     server.listen(enviroment.port, () => {
