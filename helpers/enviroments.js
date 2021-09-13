@@ -7,12 +7,14 @@ enviroments.staging = {
     port: 3000,
     envName: 'staging',
     secretKey: 'gjhvjvshghbv',
+    maxChecks: 5,
 };
 
 enviroments.production = {
     port: 4000,
     envName: 'Production',
     secretKey: 'kjndfblnbllnb',
+    maxChecks: 5,
 };
 // Determine Enviroment
 const currentEnviroment =
@@ -20,8 +22,8 @@ const currentEnviroment =
 
 // Export Corresponding enviroment object
 const enviromentToExport =
-    typeof enviroments[currentEnviroment] === 'object' ?
-        enviroments[currentEnviroment]
+    typeof enviroments[currentEnviroment] === 'object'
+        ? enviroments[currentEnviroment]
         : enviroments.staging;
 
 module.exports = enviromentToExport;

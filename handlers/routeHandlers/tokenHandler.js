@@ -18,14 +18,14 @@ handler._token = {};
 handler._token.post = (requestProperties, callback) => {
     const phoneNumber =
         typeof requestProperties.body.phoneNumber === 'string' &&
-        requestProperties.body.phoneNumber.trim().length === 11 ?
-            requestProperties.body.phoneNumber
+        requestProperties.body.phoneNumber.trim().length === 11
+            ? requestProperties.body.phoneNumber
             : false;
 
     const password =
         typeof requestProperties.body.password === 'string' &&
-        requestProperties.body.password.trim().length > 0 ?
-            requestProperties.body.password
+        requestProperties.body.password.trim().length > 0
+            ? requestProperties.body.password
             : false;
 
     if (phoneNumber && password) {
@@ -34,7 +34,7 @@ handler._token.post = (requestProperties, callback) => {
                 const hasedPassword = hash(password);
                 if (hasedPassword === parseJSON(userData).password) {
                     const tokenId = hashcreateRandomString(20);
-                    const expires = Date.now() + 60 * 60 * 100;
+                    const expires = Date.now() + 60 * 60 * 1000;
                     const tokenObject = {
                         phoneNumber,
                         id: tokenId,
@@ -63,8 +63,8 @@ handler._token.get = (requestProperties, callback) => {
     // check phone number
     const id =
         typeof requestProperties.queryStringObject.id === 'string' &&
-        requestProperties.queryStringObject.id.trim().length === 20 ?
-            requestProperties.queryStringObject.id
+        requestProperties.queryStringObject.id.trim().length === 20
+            ? requestProperties.queryStringObject.id
             : false;
 
     if (id) {
@@ -89,13 +89,13 @@ handler._token.get = (requestProperties, callback) => {
 handler._token.put = (requestProperties, callback) => {
     const id =
         typeof requestProperties.body.id === 'string' &&
-        requestProperties.body.id.trim().length === 20 ?
-            requestProperties.body.id
+        requestProperties.body.id.trim().length === 20
+            ? requestProperties.body.id
             : false;
 
     const extend =
-        typeof requestProperties.body.extend === 'boolean' && requestProperties.body.extend === true ?
-            requestProperties.body.extend
+        typeof requestProperties.body.extend === 'boolean' && requestProperties.body.extend === true
+            ? requestProperties.body.extend
             : false;
 
     if (id && extend) {
@@ -103,7 +103,7 @@ handler._token.put = (requestProperties, callback) => {
             if (!err1) {
                 if (parseJSON(tokenData).expires > Date.now()) {
                     const tokenObject = parseJSON(tokenData);
-                    tokenObject.expires = Date.now() + 1 * 60 * 60 * 1000;
+                    tokenObject.expires = Date.now() + 60 * 60 * 1000;
 
                     // store updated token
                     data.update('tokens', id, tokenObject, (err2) => {
@@ -140,8 +140,8 @@ handler._token.delete = (requestProperties, callback) => {
     // check token if valid
     const id =
         typeof requestProperties.queryStringObject.id === 'string' &&
-        requestProperties.queryStringObject.id.trim().length === 20 ?
-            requestProperties.queryStringObject.id
+        requestProperties.queryStringObject.id.trim().length === 20
+            ? requestProperties.queryStringObject.id
             : false;
     if (id) {
         data.read('tokens', id, (err1, tokenData) => {
