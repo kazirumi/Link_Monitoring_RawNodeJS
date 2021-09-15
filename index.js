@@ -1,30 +1,25 @@
-const http = require('http');
 // const url = require('url');
 // const { StringDecoder } = require('string_decoder');
-const { handleReqRes } = require('./helpers/handleReqRes');
-const enviroment = require('./helpers/enviroments');
+
+const server = require('./lib/server');
+const worker = require('./lib/worker');
+
 // const lib = require('./lib/data');
-const { sendTwilioSms } = require('./helpers/notifications');
+// const { sendTwilioSms } = require('./helpers/notifications');
 
 const app = {};
-// lib.delete('test', 'newFile', (err) => {
-//     console.log(err);
-// });
-// todo test delete
 
+// todo twilio test delete
 // sendTwilioSms('01303737379', 'hello rumi', (err) => {
 //     console.log(err);
 // });
 
-// config server
-app.createServer = () => {
-    const server = http.createServer(app.handleReqRes);
-    server.listen(enviroment.port, () => {
-        console.log(`${process.env.NODE_ENV}`);
-        console.log(`listening to port ${enviroment.port}`);
-    });
+// create server
+app.init = () => {
+    // start server
+    server.init();
+    // start workers
+    worker.init();
 };
 
-app.handleReqRes = handleReqRes;
-
-app.createServer();
+app.init();

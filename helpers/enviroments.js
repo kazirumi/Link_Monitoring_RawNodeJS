@@ -32,8 +32,8 @@ const currentEnviroment =
 
 // Export Corresponding enviroment object
 const enviromentToExport =
-    typeof enviroments[currentEnviroment] === 'object' ?
-        enviroments[currentEnviroment]
+    typeof enviroments[currentEnviroment] === 'object'
+        ? enviroments[currentEnviroment]
         : enviroments.staging;
 
 module.exports = enviromentToExport;

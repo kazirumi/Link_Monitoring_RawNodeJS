@@ -23,40 +23,40 @@ handler._check.post = (requestProperties, callback) => {
     // validate inputs
     const protocol =
         typeof requestProperties.body.protocol === 'string' &&
-        ['http', 'https'].indexOf(requestProperties.body.protocol) > -1 ?
-            requestProperties.body.protocol
+        ['http', 'https'].indexOf(requestProperties.body.protocol) > -1
+            ? requestProperties.body.protocol
             : false;
 
     const url =
         typeof requestProperties.body.url === 'string' &&
-        requestProperties.body.url.trim().length > 0 ?
-            requestProperties.body.url
+        requestProperties.body.url.trim().length > 0
+            ? requestProperties.body.url
             : false;
 
     const method =
         typeof requestProperties.body.method === 'string' &&
-        ['GET', 'POST', 'PUT', 'DELETE'].indexOf(requestProperties.body.method) > -1 ?
-            requestProperties.body.method
+        ['GET', 'POST', 'PUT', 'DELETE'].indexOf(requestProperties.body.method) > -1
+            ? requestProperties.body.method
             : false;
 
     const successCodes =
         typeof requestProperties.body.successCodes === 'object' &&
-        requestProperties.body.successCodes instanceof Array
-            ? requestProperties.body.successCodes
+        requestProperties.body.successCodes instanceof Array ?
+            requestProperties.body.successCodes
             : false;
 
     const timeoutSeconds =
         typeof requestProperties.body.timeoutSeconds === 'number' &&
         requestProperties.body.timeoutSeconds % 1 === 0 &&
-        requestProperties.body.timeoutSeconds >= 1 ?
-            requestProperties.body.timeoutSeconds
+        requestProperties.body.timeoutSeconds >= 1
+            ? requestProperties.body.timeoutSeconds
             : false;
     if (protocol && url && method && successCodes) {
         // token verify
         const token =
             typeof requestProperties.headersObject.token === 'string' &&
-            requestProperties.headersObject.token.trim().length === 20
-                ? requestProperties.headersObject.token
+            requestProperties.headersObject.token.trim().length === 20 ?
+                requestProperties.headersObject.token
                 : false;
 
         // find user phone Number by Reading the token
@@ -71,8 +71,8 @@ handler._check.post = (requestProperties, callback) => {
                                 const userObject = parseJSON(userData);
                                 const userChecks =
                                     typeof userObject.checks === 'object' &&
-                                    userObject.checks instanceof Array
-                                        ? userObject.checks
+                                    userObject.checks instanceof Array ?
+                                        userObject.checks
                                         : [];
 
                                 if (userChecks.length < maxChecks) {
@@ -143,8 +143,8 @@ handler._check.get = (requestProperties, callback) => {
     // Check ID verify
     const id =
         typeof requestProperties.queryStringObject.id === 'string' &&
-        requestProperties.queryStringObject.id.trim().length === 20
-            ? requestProperties.queryStringObject.id
+        requestProperties.queryStringObject.id.trim().length === 20 ?
+            requestProperties.queryStringObject.id
             : false;
 
     if (id) {
@@ -155,8 +155,8 @@ handler._check.get = (requestProperties, callback) => {
 
                 const token =
                     typeof requestProperties.headersObject.token === 'string' &&
-                    requestProperties.headersObject.token.trim().length === 20 ?
-                        requestProperties.headersObject.token
+                    requestProperties.headersObject.token.trim().length === 20
+                        ? requestProperties.headersObject.token
                         : false;
 
                 if (token) {
@@ -190,40 +190,40 @@ handler._check.get = (requestProperties, callback) => {
 handler._check.put = (requestProperties, callback) => {
     const id =
         typeof requestProperties.body.id === 'string' &&
-        requestProperties.body.id.trim().length === 20
-            ? requestProperties.body.id
+        requestProperties.body.id.trim().length === 20 ?
+            requestProperties.body.id
             : false;
 
     // validate inputs
     const protocol =
         typeof requestProperties.body.protocol === 'string' &&
-        ['http', 'https'].indexOf(requestProperties.body.protocol) > -1 ?
-            requestProperties.body.protocol
+        ['http', 'https'].indexOf(requestProperties.body.protocol) > -1
+            ? requestProperties.body.protocol
             : false;
 
     const url =
         typeof requestProperties.body.url === 'string' &&
-        requestProperties.body.url.trim().length > 0 ?
-            requestProperties.body.url
+        requestProperties.body.url.trim().length > 0
+            ? requestProperties.body.url
             : false;
 
     const method =
         typeof requestProperties.body.method === 'string' &&
-        ['GET', 'POST', 'PUT', 'DELETE'].indexOf(requestProperties.body.method) > -1 ?
-            requestProperties.body.method
+        ['GET', 'POST', 'PUT', 'DELETE'].indexOf(requestProperties.body.method) > -1
+            ? requestProperties.body.method
             : false;
 
     const successCodes =
         typeof requestProperties.body.successCodes === 'object' &&
-        requestProperties.body.successCodes instanceof Array
-            ? requestProperties.body.successCodes
+        requestProperties.body.successCodes instanceof Array ?
+            requestProperties.body.successCodes
             : false;
 
     const timeoutSeconds =
         typeof requestProperties.body.timeoutSeconds === 'number' &&
         requestProperties.body.timeoutSeconds % 1 === 0 &&
-        requestProperties.body.timeoutSeconds >= 1 ?
-            requestProperties.body.timeoutSeconds
+        requestProperties.body.timeoutSeconds >= 1
+            ? requestProperties.body.timeoutSeconds
             : false;
 
     if (id) {
@@ -234,8 +234,8 @@ handler._check.put = (requestProperties, callback) => {
                     // token verify
                     const token =
                         typeof requestProperties.headersObject.token === 'string' &&
-                        requestProperties.headersObject.token.trim().length === 20
-                            ? requestProperties.headersObject.token
+                        requestProperties.headersObject.token.trim().length === 20 ?
+                            requestProperties.headersObject.token
                             : false;
                     if (token) {
                         tokenHandler._token.verify(token, checkObject.phoneNumber, (tokenState) => {
@@ -301,8 +301,8 @@ handler._check.delete = (requestProperties, callback) => {
     // Check ID verify
     const id =
         typeof requestProperties.queryStringObject.id === 'string' &&
-        requestProperties.queryStringObject.id.trim().length === 20
-            ? requestProperties.queryStringObject.id
+        requestProperties.queryStringObject.id.trim().length === 20 ?
+            requestProperties.queryStringObject.id
             : false;
 
     if (id) {
@@ -313,8 +313,8 @@ handler._check.delete = (requestProperties, callback) => {
 
                 const token =
                     typeof requestProperties.headersObject.token === 'string' &&
-                    requestProperties.headersObject.token.trim().length === 20 ?
-                        requestProperties.headersObject.token
+                    requestProperties.headersObject.token.trim().length === 20
+                        ? requestProperties.headersObject.token
                         : false;
 
                 if (token) {
@@ -331,8 +331,8 @@ handler._check.delete = (requestProperties, callback) => {
                                             if (!err3 && userData) {
                                                 const userChecks =
                                                     typeof userObject.checks === 'object' &&
-                                                    userObject.checks instanceof Array ?
-                                                        userObject.checks
+                                                    userObject.checks instanceof Array
+                                                        ? userObject.checks
                                                         : [];
 
                                                 // find the index number of checks array in user
